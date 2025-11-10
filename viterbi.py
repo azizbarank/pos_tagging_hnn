@@ -1,3 +1,12 @@
+def get_emission_prob(word, tag, emission_probs, all_tags):
+    """Get emission probability, using uniform probability for unknown words."""
+    key = (tag, word)
+    if key in emission_probs:
+        return emission_probs[key]
+    # Unknown word: use uniform probability
+    return 1.0 / len(all_tags)
+
+
 def viterbi(words, transition_probs, emission_probs, all_tags):
     """Find the most likely tag sequence for the given words."""
     n = len(words)
@@ -7,7 +16,7 @@ def viterbi(words, transition_probs, emission_probs, all_tags):
     # Initialize first word
     for tag in all_tags:
         trans_prob = transition_probs.get(("<START>", tag), 0)
-        emit_prob = emission_probs.get((tag, words[0]), 0)
+        emit_prob = get_emission_prob(words[0], tag, emission_probs, all_tags)
         viterbi_table[0][tag] = trans_prob * emit_prob
         backpointer[0][tag] = "<START>"
 
@@ -21,7 +30,7 @@ def viterbi(words, transition_probs, emission_probs, all_tags):
             for prev_tag in all_tags:
                 prev_prob = viterbi_table[i - 1].get(prev_tag, 0)
                 trans = transition_probs.get((prev_tag, curr_tag), 0)
-                emit = emission_probs.get((curr_tag, word), 0)
+                emit = get_emission_prob(word, curr_tag, emission_probs, all_tags)
                 prob = prev_prob * trans * emit
 
                 if prob > max_prob:
