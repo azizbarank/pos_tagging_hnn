@@ -1,6 +1,7 @@
 # POS Tagging with Hidden Markov Models
 
-This project implements part-of-speech tagging using Hidden Markov Models (HMMs) for German text from the Universal Dependencies GSD corpus.
+##Author
+Aziz Baran Kurtulus
 
 ## What I Implemented
 
@@ -84,8 +85,6 @@ The trigram model provides better context by considering two previous tags inste
 └── uv.lock
 ```
 
-## Implementation Details
+## Additional Details
 
 - I used log probabilities to prevent numerical underflow
-- Unknown words are handled with uniform probability distribution
-- The Viterbi algorithm uses dynamic programming for efficient decoding
