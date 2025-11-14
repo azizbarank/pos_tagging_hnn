@@ -76,10 +76,10 @@ The trigram model provides better context by considering two previous tags inste
 ├── hmm_trainer_trigram.py    # Trigram transition training
 ├── viterbi_trigram.py        # Trigram Viterbi algorithm
 ├── evaluate_trigram.py       # Trigram model evaluation
-├── data/
-│   ├── de_gsd-ud-train.conllu
-│   ├── de_gsd-ud-dev.conllu
-│   └── de_gsd-ud-test.conllu
+├── data/                     # Data directory
+│   ├── de_gsd-ud-train.conllu    # Training data
+│   ├── de_gsd-ud-dev.conllu      # Development data
+│   └── de_gsd-ud-test.conllu     # Test data
 ├── pyproject.toml
 └── uv.lock
 ```
