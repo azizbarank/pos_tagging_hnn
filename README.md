@@ -57,19 +57,35 @@ python evaluate_trigram.py
 
 ## Results
 
-- **Bigram Model**: 15.82% accuracy
-- **Trigram Model**: 19.36% accuracy
+| Model | Accuracy | Runtime |
+|-------|----------|---------|
+| Bigram HMM | 15.84% | ~4 seconds |
+| Trigram HMM | 19.32% | ~19 seconds |
 
 The trigram model provides better context by considering two previous tags instead of one, resulting in improved accuracy.
 
-## Project Structure
+## Directory Structure
 
 ```
-corpus_reader.py          - CoNLL-U format reader
-hmm_trainer.py            - Bigram transition/emission training
-viterbi.py                - Bigram Viterbi algorithm
-evaluate.py               - Bigram model evaluation
-hmm_trainer_trigram.py    - Trigram transition training
-viterbi_trigram.py        - Trigram Viterbi algorithm
-evaluate_trigram.py       - Trigram model evaluation
+.
+├── README.md
+├── corpus_reader.py          # CoNLL-U format reader
+├── hmm_trainer.py            # Bigram transition/emission training
+├── viterbi.py                # Bigram Viterbi algorithm
+├── evaluate.py               # Bigram model evaluation
+├── hmm_trainer_trigram.py    # Trigram transition training
+├── viterbi_trigram.py        # Trigram Viterbi algorithm
+├── evaluate_trigram.py       # Trigram model evaluation
+├── data/
+│   ├── de_gsd-ud-train.conllu
+│   ├── de_gsd-ud-dev.conllu
+│   └── de_gsd-ud-test.conllu
+├── pyproject.toml
+└── uv.lock
 ```
+
+## Implementation Details
+
+- I used log probabilities to prevent numerical underflow
+- Unknown words are handled with uniform probability distribution
+- The Viterbi algorithm uses dynamic programming for efficient decoding
