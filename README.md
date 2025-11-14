@@ -1,6 +1,6 @@
 # POS Tagging with Hidden Markov Models
 
-##Author
+## Author
 Aziz Baran Kurtulus
 
 ## What I Implemented
